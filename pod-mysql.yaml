@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "mysql"
+  namespace: default
+  labels:
+    app: "mysql"
+spec:
+  containers:
+  - name: mysql
+    image: "mysql:latest"
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: impacta
+    - name: MYSQL_DATABASE
+      value: impacta_db
+    ports:
+    - containerPort:  3306
+      name: mysql-port
+  restartPolicy: Always
